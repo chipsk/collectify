@@ -36,7 +36,7 @@ jobs:
       - name: Build Next.js app
         run: npm run build
         env:
-          NEXT_PUBLIC_BASE_PATH: ''
+          NEXT_PUBLIC_BASE_PATH: '/collectify'
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
