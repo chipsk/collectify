@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #f8fafc;
+  --color-foreground: #1e293b;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
+}
+
+* {
+  @apply border-stone-200;
+}
+
+body {
+  @apply bg-gradient-to-br from-stone-50 via-stone-50 to-amber-50;
+  @apply text-stone-800;
+  @apply font-sans;
+  @apply antialiased;
+}
+
+.glass {
+  @apply bg-white/70;
+  @apply backdrop-blur-xl;
+  @apply border border-white/40;
+  @apply shadow-lg shadow-stone-200/50;
+}
+
+.glass-soft {
+  @apply bg-white/50;
+  @apply backdrop-blur-md;
+  @apply border border-white/30;
+}
+
+.glass-strong {
+  @apply bg-white/80;
+  @apply backdrop-blur-2xl;
+  @apply border border-white/60;
+  @apply shadow-2xl shadow-stone-300/40;
+}
+
+.btn-gradient {
+  @apply bg-gradient-to-r from-amber-500 to-orange-500;
+  @apply hover:from-amber-600 hover:to-orange-600;
+  @apply shadow-md shadow-amber-200/50;
+  @apply hover:shadow-lg hover:shadow-amber-300/60;
+  @apply transition-all duration-300;
+}
+
+.card-hover {
+  @apply transition-all duration-300;
+  @apply hover:-translate-y-0.5;
+  @apply hover:shadow-xl hover:shadow-amber-200/40;
+}
+
+.tag-gradient {
+  @apply bg-gradient-to-r from-amber-100 to-orange-100;
+  @apply text-amber-700;
+}
+
+.animate-in-slide {
+  animation: slideInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in-fade {
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* PARA Navigation */
+.para-nav-item {
+  @apply w-full text-left px-3 py-2.5 rounded-xl text-sm transition-all flex items-center gap-2.5;
+}
+
+/* Task priority bars */
+.task-priority-high {
+  border-left: 3px solid #f87171;
+}
+.task-priority-medium {
+  border-left: 3px solid #fbbf24;
+}
+.task-priority-low {
+  border-left: 3px solid #34d399;
+}
+
+/* Project status badges */
+.project-status-badge {
+  @apply text-xs px-2 py-1 rounded-lg font-medium;
+}
+.project-status-idea {
+  @apply bg-slate-100 text-slate-600;
+}
+.project-status-active {
+  @apply bg-indigo-50 text-indigo-500;
+}
+.project-status-completed {
+  @apply bg-green-50 text-green-600;
+}
+.project-status-review {
+  @apply bg-yellow-50 text-yellow-600;
+}
+.project-status-archived {
+  @apply bg-stone-100 text-stone-400;
+}
+
+/* PARA type colors */
+.para-flash { @apply text-amber-500; }
+.para-task { @apply text-teal-500; }
+.para-note { @apply text-stone-500; }
+.para-project { @apply text-indigo-500; }
+.para-area { @apply text-purple-500; }
+.para-resource { @apply text-green-500; }
+.para-archive { @apply text-stone-400; }
