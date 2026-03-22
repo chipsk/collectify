@@ -4,6 +4,12 @@
   --color-background: #f8fafc;
   --color-foreground: #1e293b;
   --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
+  /* Responsive breakpoints */
+  --breakpoint-xs: 375px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
 }
 
 * {
@@ -124,3 +130,10 @@ body {
 .para-area { @apply text-purple-500; }
 .para-resource { @apply text-green-500; }
 .para-archive { @apply text-stone-400; }
+
+/* Mobile safe area for bottom tab bar (iPhone with home indicator) */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}

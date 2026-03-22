@@ -229,9 +229,9 @@ export default function QuickCapture() {
   if (!isQuickCaptureOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
       <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" onClick={closeQuickCapture} />
-      <div className="relative glass-strong rounded-3xl w-full max-w-lg overflow-hidden animate-in-slide max-h-[90vh] flex flex-col">
+      <div className="relative glass-strong rounded-t-3xl sm:rounded-3xl w-full !max-w-none sm:!max-w-lg h-screen sm:h-auto sm:max-h-[90vh] overflow-hidden animate-in-slide flex flex-col">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-white/30 shrink-0">
           <div className="flex items-center gap-3">

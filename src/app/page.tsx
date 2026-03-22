@@ -267,9 +267,9 @@ export default function Home() {
       </div>
 
       {/* Two column layout: left=content, right=calendar */}
-      <div className="grid grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         {/* Left column (3/5): Today's Tasks + Active Projects + Habit Checkins */}
-        <div className="col-span-3 space-y-6">
+        <div className="lg:col-span-3 space-y-6">
           {/* Section 1: Today's Tasks (teal theme) */}
           <div className="p-5 bg-gradient-to-br from-teal-50 to-cyan-50 rounded-2xl border border-teal-100">
             <div className="flex items-center justify-between mb-4">
@@ -456,8 +456,8 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Right column (2/5): Calendar */}
-        <div className="col-span-2">
+        {/* Right column (2/5): Calendar — hidden on mobile */}
+        <div className="hidden lg:block lg:col-span-2">
           <CalendarView />
         </div>
       </div>
@@ -523,12 +523,12 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-6 py-8">
-        <div className="flex gap-8">
-          {/* Left: PARA Navigation */}
+      <main className="max-w-5xl mx-auto px-4 py-6 lg:px-6 lg:py-8">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+          {/* Left: PARA Navigation (sidebar on desktop, tab bar on mobile) */}
           <PARANav />
 
-          <div className="flex-1 min-w-0">
+          <div className="flex-1 min-w-0 pb-20 lg:pb-0">
             {/* Command Center (Home) */}
             {homeSection === 'home' && renderCommandCenter()}
 
@@ -572,8 +572,8 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Floating action buttons */}
-      <div className="fixed right-6 bottom-6 flex flex-col gap-3 z-20">
+      {/* Floating action buttons — raised above mobile tab bar */}
+      <div className="fixed right-4 bottom-24 lg:bottom-6 flex flex-col gap-3 z-20">
         <button
           onClick={() => enterFlowMode()}
           className="w-10 h-10 bg-gradient-to-br from-indigo-400 to-purple-500 text-white rounded-xl shadow-lg shadow-purple-300/50 hover:shadow-xl hover:shadow-purple-300/60 hover:scale-105 transition-all flex items-center justify-center"
