@@ -206,7 +206,9 @@ export default function Home() {
 
   // Render card list for note/project/area/resource sections
   const renderCardListSection = () => {
-    return renderCardList(filteredCards);
+    // homeSection is a PARA type: filter cards by paraType directly
+    const sectionCards = cards.filter(c => !c.archived && c.paraType === homeSection);
+    return renderCardList(sectionCards as typeof filteredCards);
   };
 
   const renderCardList = (cardList: typeof filteredCards) => {
