@@ -222,8 +222,9 @@ export const useAppStore = create<AppState & {
   startReview: () => void;
   endReview: () => void;
   reviewCard: (card: Card, quality: number) => void;
-  openSimilarPanel: (suggestions: { card: Card; similarity: number }[]) => void;
+  openSimilarPanel: (suggestions: { card: Card; similarity: number }[], pendingCard?: Card) => void;
   closeSimilarPanel: () => void;
+  savePendingCard: () => void;
   openTimeCapsule: () => void;
   closeTimeCapsule: () => void;
   enterFlowMode: (card?: Card) => void;
@@ -278,6 +279,7 @@ export const useAppStore = create<AppState & {
   isReviewMode: false,
   similarSuggestions: [],
   isSimilarPanelOpen: false,
+  pendingCardPayload: null as Card | null,
   isTimeCapsuleOpen: false,
   isFlowMode: false,
   activePARA: null,
@@ -368,11 +370,26 @@ export const useAppStore = create<AppState & {
   startReview: () => set({ isReviewMode: true }),
   endReview: () => set({ isReviewMode: false }),
 
-  openSimilarPanel: (suggestions) => set({ 
+  openSimilarPanel: (suggestions, pendingCard?: Card) => set({ 
     similarSuggestions: suggestions, 
-    isSimilarPanelOpen: true 
+    isSimilarPanelOpen: true,
+    pendingCardPayload: pendingCard || null,
   }),
-  closeSimilarPanel: () => set({ isSimilarPanelOpen: false }),
+  closeSimilarPanel: () => set({ isSimilarPanelOpen: false, similarSuggestions: [], pendingCardPayload: null }),
+  savePendingCard: () => {
+    const payload = get().pendingCardPayload;
+    if (!payload) return;
+    let newCards = [payload, ...get().cards];
+    if (payload.parentId) {
+      newCards = newCards.map(c =>
+        c.id === payload.parentId
+          ? { ...c, childIds: [...(c.childIds || []), payload.id] }
+          : c
+      );
+    }
+    set({ cards: newCards, pendingCardPayload: null });
+    saveCards(newCards);
+  },
 
   openTimeCapsule: () => set({ isTimeCapsuleOpen: true }),
   closeTimeCapsule: () => set({ isTimeCapsuleOpen: false }),

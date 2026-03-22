@@ -14,6 +14,7 @@ export default function SimilarCardsPanel() {
     updateCard,
     editingCard,
     isQuickCaptureOpen,
+    savePendingCard,
   } = useAppStore();
 
   if (!isSimilarPanelOpen) return null;
@@ -59,6 +60,7 @@ export default function SimilarCardsPanel() {
           {similarSuggestions.length === 0 ? (
             <div className="text-center py-8">
               <p className="text-stone-400 text-sm">没有找到相似卡片，很可能是全新内容~</p>
+              <p className="text-stone-400 text-xs mt-1">点击下方「好的」即可保存</p>
             </div>
           ) : (
             similarSuggestions.map(({ card, similarity }) => (
@@ -112,14 +114,14 @@ export default function SimilarCardsPanel() {
 
         <div className="flex justify-end gap-3 px-6 py-4 bg-white/40 border-t border-white/30">
           <button
-            onClick={closeSimilarPanel}
+            onClick={() => { if (!isEditing) savePendingCard(); closeSimilarPanel(); }}
             className="px-5 py-2.5 text-stone-600 hover:bg-white/50 rounded-xl transition-colors text-sm"
           >
             {isEditing ? '继续编辑' : '好的'}
           </button>
           {similarSuggestions.length > 0 && (
             <button
-              onClick={closeSimilarPanel}
+              onClick={() => { savePendingCard(); closeSimilarPanel(); }}
               className="px-5 py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm font-medium rounded-xl hover:from-purple-600 hover:to-pink-600 transition-all shadow-md shadow-purple-200/50"
             >
               这是新内容，保存

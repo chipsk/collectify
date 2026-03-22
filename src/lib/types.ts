@@ -119,6 +119,7 @@ export interface AppState {
   isReviewMode: boolean;
   // 相似卡片检测
   similarSuggestions: { card: Card; similarity: number }[];
+  pendingCardPayload?: Card | null;
   isSimilarPanelOpen: boolean;
   // 历史上的今天
   isTimeCapsuleOpen: boolean;

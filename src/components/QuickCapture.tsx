@@ -120,11 +120,6 @@ export default function QuickCapture() {
     const title = formData.title?.trim();
     if (!title) return;
 
-    if (similarCards.length > 0 && !isSimilarPanelOpen) {
-      openSimilarPanel(similarCards.map(x => ({ card: x.card, similarity: x.sim })));
-      return;
-    }
-
     const now = Date.now();
     const cardPayload: Card = {
       id: crypto.randomUUID(),
@@ -186,6 +181,11 @@ export default function QuickCapture() {
         nextReviewAt: now + 24 * 60 * 60 * 1000,
       } : {}),
     };
+
+    if (similarCards.length > 0 && !isSimilarPanelOpen) {
+      openSimilarPanel(similarCards.map(x => ({ card: x.card, similarity: x.sim })), cardPayload);
+      return;
+    }
 
     // Add to store directly
     let newCards = [cardPayload, ...useAppStore.getState().cards];
